@@ -10,7 +10,9 @@
     position: relative;
 }
 
-.site-title {
+
+.title {
+    color: #505050;
     font-size: 26px;
     line-height: 56px;
     letter-spacing: -1px;
@@ -21,6 +23,14 @@
     &:visited {
         color: $grey-color-dark;
     }
+}
+
+.multisite-title {
+    font-family: 'Logo', sans-serif;
+}
+
+.site-title {
+    font-family: 'Headings', sans-serif;
 }
 
 .site-nav {
