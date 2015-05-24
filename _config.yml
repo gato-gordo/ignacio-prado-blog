@@ -1,0 +1,14 @@
+# Site settings
+title: Code Craft Creep
+multisite_title: Ignacio Prado
+email: ignacio@gatogordoweb.com 
+description: > # this means to ignore newlines until "baseurl:"
+  A technical learning and sharing blog.  
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://technical-blog.ignacioprado.net" # the base hostname & protocol for your site
+multisite_url: "http://ignacioprado.net"
+twitter_username: i_prado78 
+github_username: gato-gordo 
+
+# Build settings
+markdown: kramdown
