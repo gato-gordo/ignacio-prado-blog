@@ -5,6 +5,7 @@
     border-top: 5px solid $grey-color-dark;
     border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
+    background: #f8f786;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -25,13 +26,13 @@
 }
 
 .multisite-title {
-    font-family: 'Logo', sans-serif;
-    float: left;
+    font-family: 'Headings', sans-serif;
+    float: right;
 }
 
 .site-title {
-    font-family: 'Headings', sans-serif;
-    float: right;
+    font-family: 'Logo', sans-serif;
+    float: left;
 }
 
 /**
