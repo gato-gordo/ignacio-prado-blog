@@ -6,7 +6,7 @@
 
 
 // Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-family: 'Ubuntu', sans-serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
@@ -50,3 +50,10 @@ $on-laptop:        800px;
         "layout",
         "syntax-highlighting"
 ;
+
+@font-face { 
+	font-family: Logo; src: url('/fonts/logo.ttf'); 
+} 
+@font-face { 
+	font-family: Headings; src: url('/fonts/headings.ttf'); 
+} 
