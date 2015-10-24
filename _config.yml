@@ -8,7 +8,7 @@ and selective implementation of advice from Dave Hoover and Adewale Oshineye's
 baseurl: "/blog" # the subpath of your site, e.g. /blog/
 url: "http://ignacioprado.net/blog" # the base hostname & protocol for your site
 multisite_url: "http://ignacioprado.net"
-twitter_username: i_prado78 
+twitter_username: ignacio_prado78 
 github_username: gato-gordo
 redcarpet:
   extensions: [tables]
