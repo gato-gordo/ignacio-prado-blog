@@ -1,22 +1,22 @@
 ---
 layout: post
-title:  "Managing Complexity with Black-Box Abstraction: An Introduction to the Wizard Book"
+title:  "Functional Decomposition: An Introduction to the Wizard Book, Part I"
 date:   2015-09-18
 categories: [sicp, lisp, computer science, program design, black-box abstraction]
 ---
 
-*This blog post is adapted from a lightning-talk I gave at MakerSquare on 9/18/2015*
+*These next two blog posts are adapted from a lightning-talk I gave at MakerSquare on 9/18/2015*
 
-The main purpose of this talk is simply to make you aware of the [Wizard Book][sicp]: what it is and why I think working through it makes a great complement and possible next step to the training we get at [MakerSquare][ms].  As way of introducing the distinctive style and thinking of the authors, I will focus on their concept of "black-box abstraction", a simple tool that allows developers to manage the complexity of scaling systems.
+The main purpose of this talk is simply to make you aware of the [Wizard Book][sicp]: what it is and why I think it makes a great complement to the training we get at [MakerSquare][ms].  By way of introducing the distinctive style and thinking of the authors, I will focus on their concepts of "functional decomposition" and "black-box abstraction", simple techniques for designing and managing the complexity of scaling systems.
 
 "Wizard Book", Whaa?
 ====================
 The first question you are likely to ask is, "what do mean, `Wizard Book`?"  The `Wizard Book` is the nickname for Harold Abelson, Gerald Jay Sussman 
-and Julie Sussman's  `*The Structure and Interpretation of Computer Programs* (1986)`.  It's colloquially known as the `Wizard Book` because of the illustration on the front cover:
+and Julie Sussman's  *The Structure and Interpretation of Computer Programs* (1986).  It's colloquially known as the `Wizard Book` because of the cover illustration:
 
 ![SICP](https://mitpress.mit.edu/sicp/full-text/book/cover.jpg)
 
-The wizard on front cover is itself, however, a reference to a powerful metaphor for programming that the authors use to introduce the book:
+The cover illustration is itself a reference to a powerful metaphor for programming that the authors use to introduce the book:
 
 > We are about to study the idea of a *computational process*. Computational processes are abstract beings that inhabit computers. As they evolve, processes manipulate other abstract things called *data*. The evolution of a process is directed by a pattern of rules called a *program*. People create programs to direct processes. In effect, we conjure the spirits of the computer with our spells.
 
@@ -25,22 +25,18 @@ The wizard on front cover is itself, however, a reference to a powerful metaphor
 
 Released in 1986, the `Wizard Book` was used as the textbook for the introductory programming course at MIT, originally taught by the authors, until 2008. An [online version][sicp] is made freely  available by MIT Press.
 
-The Director of Research at Google Likes the Wizard Book
-========================================================
-The internet is full of people saying nice things about the `Wizard Book`, and I won't take too much time reiterating those points of praise (more references are provided at the bottom of this post).   I will, however, quote [Peter Norvig][pn], a computer scientist who is the Director of Research at Google, whose[Amazon review][pnar] of the book provides a particularly apt summary of its merits: 
-
->Programming is a craft that is subject to frequent failure: many projects are started and abandoned because the designers do not have the flexibility, experience and understanding to come up with a suitable design and implementation. SICP gives you an approach that will succeed, but it is an approach based on principles and wisdom, not on a checklist. If you don't understand the principles, or if you are the kind of person who wants to be given a cookbook of what to do rather than to think creatively, or if you only want to work on problems that are pretty much like the problem you worked on last time, then this approach will not work for you. There are other approaches that will be more reproducible for a limited range of simple problems, but there is no better way than SICP to learn how to address the truly hard problems.
-
-There is a lot in Norvig's review that gets at what the Wizard Book does and does not do for a developer.  What it doesn't do is provide you with an introduction to bleeding-edge technologies, frameworks that organize and abstract common tasks in some programming domain, or even instruction in a language that's widely used in the contemporary workplace.  What it does do, however, is provide of general set of principles that can be applied to designing and implementing any solution to a problem that can be approached computationally.  One relatively non-technical principle, which I will focus in this talk, is the idea of block-box abstraction: a toool that allows the programmer to manage the complexity of systems as they grow. 
-
-Why Should JavaScript Developers Work through the Wizard Book?
+Scheme & the Roots of Functional JavaScript
 =============================================================
-The `Wizard Book` famously works through the problems and principles of computer science in an arcane programming language, [Scheme][scheme], which is a dialect of [LISP][lisp] designed by one of the book's authors.  As suggested I earlier, Scheme is not a widely used language.  However, it's design is at the heart of most of the powerful features of JavaScript: first-class functions and closures.  As Brendan Eich has said,
+The `Wizard Book` works through the problems and principles of computer science in [Scheme][scheme], a dialect of [LISP][lisp] designed by Gerald Jay Sussman, one of the book's authors.  Though LISP/Scheme has a reputation for being an arcane language, it's design has been very influential.  Brendan Eich, the creator of JavaScript, [has said][be] that
 
 >JavaScript was meant to be "doing Scheme" in the browser
 
+First-class and higher-order functions, closures, and some of the other functional-proramming features of JavaScript, for example, have their roots in Scheme.  For a JS developer, then, learning Scheme through the `Wizard Book` can lead to a deeper understanding of functional programming. With Scheme as a point of comparison, you can abstract away from the implementation details of functional programming in JS and get a clearer picture of it as a generalized paradigm for building systems to solve computational problems. 
+
 Declarative Vs. Imperative Knowledge
 ====================================
+At the core of true functional programming is a style designing procedures that avoid manipulating programming state and typically act by chaining together operations on immutable values.  The beginnings of functional programming in a looser sense, however, 
+
 **Declarative Knowledge**
 
 What is it?
@@ -177,39 +173,6 @@ function goodEnough(guess, target){
 
 {% endhighlight %}
 
-Second Technique for Taming Complexity: Black-Box Abstraction
-=============================================================
-
-        16 -> [sqrt] -> 4 
-                         \
-                          4,5 -> [sum] -> 9
-                         /
-        25 -> [sqrt] -> 5 
-
-1. Seems to be over-engineering what is easy now, but when systems 
- get huge this is very important.
-2. With millions of lines of code, you simply can't know the details / implementation.
-    With black-box abstraction, you don't __need to know__ all you need to know when working in your black box is the interface of the surrounding black boxes and your own interface
-3. Makes test driven-development easier
-    --as soon as you have the box boxes, you can write your unit and integration tests
-
-Abstracting Procedures that Yield Procedures
-============================================
-
-    16 -> [squareRooterX] -> squareRooter16
-
-**Newton's Method**
-
-       16 = x^2
-     f(x) = x^2 - 16
-
-     x[n+1] = x[n] - f(n)/f'(n)
-
-     x[0] = 1
-     x[1] = 1 - (1^2 - 16)(2) = 8.5
-     x[2] = 8.5 - (8.5^2 - 16)/2 = 
-
-    [squareRootFunction], 16 -> [NewtonMethodizer] -> squareRooter16
 
 
 [scheme]: https://en.wikipedia.org/wiki/Scheme_(programming_language)
@@ -218,3 +181,4 @@ Abstracting Procedures that Yield Procedures
 [ms]: http://www.makersquare.com
 [pn]: http://norvig.com/
 [pnar]: http://www.amazon.com/review/R403HR4VL71K8
+[be]: https://brendaneich.com/tag/history/
